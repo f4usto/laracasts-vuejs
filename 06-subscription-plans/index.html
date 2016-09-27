@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Laracasts VueJs</title>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <div v-for="plan in plans">
+            <plan :plan="plan" :active.sync="active"></plan>
+        </div>
+
+        <pre>
+            {{ $data | json }}
+        </pre>
+    </div>
+
+    <template id="plan-template">
+        <div>
+            <span>{{ plan.name }}</span>
+            <span>{{ plan.price }}/month</span>
+            <button v-if="!isSelected" @click="setPlan">
+                {{ isUpgrade ? 'Upgrade' : 'Downgrade' }}
+            </button>
+
+            <span v-else>
+                Selected
+            </span>
+        </div>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/vue/1.0.27/vue.js"></script>
+    <script>
+
+        new Vue({
+            el: '#app',
+
+            data: {
+                plans: [
+                    { name: 'Enterprise', price: 100 },
+                    { name: 'Buzz', price: 50 },
+                    { name: 'Basic', price: 10 },
+                    { name: 'Free', price: 0 },
+                ],
+                active: {}
+            },
+
+            components: {
+                plan:
+                {
+                    template: '#plan-template',
+
+                    props: ['plan', 'active'],
+
+                    methods: {
+                        setPlan: function() {
+                            this.active = this.plan;
+                        }
+                    },
+                    computed: {
+                        isUpgrade: function() {
+                            if (this.active.price) {
+                                return this.plan.price > this.active.price;
+                            }
+                            return true;
+                        },
+
+                        isSelected: function() {
+                            return this.plan.name == this.active.name;
+                        }
+                    }
+                }
+            }
+
+        });
+    </script>
+
+</body>
+</html>

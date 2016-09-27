@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Laracasts VueJs</title>
+</head>
+
+<body>
+
+    <div id="app">
+
+       <form action="done.html" @submit.prevent="handleIt">
+        <!-- <form action="done.html" v-on:submit.prevent="handleIt"> -->
+            <button type="submit" >
+                Submit
+            </button>
+        </form>
+
+        <button type="submit" @click="increment">
+            Increment
+        </button>
+
+        <span>{{ count }}</span>
+
+        <pre>
+            {{ $data | json }}
+        </pre>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/vue/1.0.27/vue.min.js"></script>
+
+    <script>
+        var count = 0;
+
+        new Vue({
+            el: '#app',
+            data: {
+                count: count,
+            },
+            methods: {
+                    handleIt: function() {
+                        // first way..
+                        // e.preventDefault();
+                        alert('Submited');
+                    },
+                    increment: function() {
+                        this.count += 1;
+                    }
+                }
+        });
+    </script>
+
+</body>
+</html>

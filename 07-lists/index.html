@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Laracasts VueJs</title>
+
+    <style type="text/css">
+        li {
+            cursor: pointer;
+        }
+        .completed {
+            text-decoration: line-through;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="app">
+        <pre>
+            {{ $data | json }}
+        </pre>
+
+        <ul>
+            <li
+                :class="{ 'completed': task.completed }"
+                v-for="task in tasks"
+                @click="toogle(task)"
+            >
+                {{ task.name }}
+            </li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/vue/1.0.27/vue.js"></script>
+    <script src="main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Laracasts VueJs</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <form>
+            <span class="error" v-show="!message">
+                Must enter a message
+            </span>
+            <br>
+
+            <textarea v-model="message" cols="30" rows="10">
+
+            </textarea>
+            <br>
+
+            <!-- remove the button, not just doesnt display -->
+            <button type="submit" v-if="message">
+                Send!
+            </button>
+        </form>
+
+        <pre>
+            {{ $data | json }}
+        </pre>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/vue/1.0.27/vue.min.js"></script>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello world'
+            }
+        });
+    </script>
+
+</body>
+</html>

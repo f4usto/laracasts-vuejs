@@ -8,21 +8,7 @@
 <body>
 
     <div id="app">
-        <form>
-            <span class="error" v-show="!message">
-                Must enter a message
-            </span>
-            <br>
-
-            <textarea v-model="message" cols="30" rows="10">
-
-            </textarea>
-            <br>
-
-            <button type="submit" v-if="message">
-                Send!
-            </button>
-        </form>
+        <p>Submited</p>
 
         <pre>
             {{ $data | json }}
@@ -35,7 +21,6 @@
         new Vue({
             el: '#app',
             data: {
-                message: 'Hello world'
             }
         });
     </script>

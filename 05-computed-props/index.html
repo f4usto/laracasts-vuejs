@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Laracasts VueJs</title>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <h1>Skill:: {{ skill }}</h1>
+
+        <input v-model="points"></input>
+
+        <pre>
+            {{ $data | json }}
+        </pre>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/vue/1.0.27/vue.js"></script>
+    <script>
+        var count = 0;
+
+        new Vue({
+            el: '#app',
+
+            data: {
+                points: 100,
+
+            },
+
+            computed: {
+                skill: function() {
+                    if (this.points <= 100) return 'Beginner';
+                    if (this.points <= 500) return 'Inermadiate';
+                    return 'Pro';
+                }
+            },
+
+            watch: {
+                points: function () {
+                    // watcher for change values on points..
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

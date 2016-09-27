@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Laracasts VueJs</title>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <counter title="Likes"></counter>
+        <counter title="Dislikes"></counter>
+        <counter></counter>
+
+        <pre>
+            {{ $data | json }}
+        </pre>
+    </div>
+
+    <template id="counter-template">
+        <h1>{{ title }}</h1>
+        <button @click="increment">increment {{ count }}</button>
+    </template>
+
+
+    <script src="https://cdn.jsdelivr.net/vue/1.0.27/vue.js"></script>
+    <script>
+        var count = 0;
+
+        Vue.component('counter', {
+            template: '#counter-template',
+
+            props: ['title'],
+
+            data: function () {
+                return { count: 0 };
+            },
+            methods: {
+                increment: function() {
+                    this.count += 1;
+                }
+            }
+        });
+
+        new Vue({
+            el: '#app',
+        });
+    </script>
+
+</body>
+</html>
