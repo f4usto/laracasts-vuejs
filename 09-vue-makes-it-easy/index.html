@@ -22,16 +22,42 @@
             {{ $data | json }}
         </pre>
 
-        <ul>
+        <tasks :list.sync="tasks"></tasks>
+
+        <p>
+            <input
+                type="text"
+                v-model="newTask"
+                @blur="insertTask">
+        </p>
+    </div>
+
+    <template id="tasks-template">
+        <h1>My tasks
+            <span v-if="remaining">
+                ({{ remaining }})
+            </span>
+        </h1>
+        <ul v-show="list.length">
             <li
+                v-for="task in list"
                 :class="{ 'completed': task.completed }"
-                v-for="task in tasks"
                 @click="toogle(task)"
             >
                 {{ task.name }}
+                <strong @click.stop="remove(task)">x</strong>
             </li>
         </ul>
-    </div>
+
+        <p v-else>
+            No tasks...
+        </p>
+
+        <button @click="clearCompleted">
+            Limpar
+        </button>
+    </template>
+
 
     <script src="https://cdn.jsdelivr.net/vue/1.0.27/vue.js"></script>
     <script src="main.js"></script>

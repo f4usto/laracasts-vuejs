@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Laracasts VueJs</title>
+
+    <style type="text/css">
+        li {
+            cursor: pointer;
+        }
+        .completed {
+            text-decoration: line-through;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="app">
+        <pre>
+            {{ $data | json }}
+        </pre>
+
+        <tasks :list.sync="tasks"></tasks>
+
+        <p>
+            <input
+                type="text"
+                v-model="newTask"
+                @keyup.enter.stop="insertTask"
+                @blur.stop="insertTask">
+        </p>
+    </div>
+
+    <template id="tasks-template">
+        <h1>My tasks
+            <span v-if="remaining">
+                ({{ remaining }})
+            </span>
+        </h1>
+        <ul v-show="list.length">
+            <li
+                v-for="task in list"
+                :class="{ 'completed': task.completed }"
+                @click="toogle(task)"
+            >
+                {{ task.name }}
+                <strong @click.stop="remove(task)">x</strong>
+            </li>
+        </ul>
+
+        <p v-else>
+            No tasks...
+        </p>
+
+        <button @click="clearCompleted">
+            Limpar
+        </button>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/vue/1.0.27/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.0.3/vue-resource.js"></script>
+    <script src="main.js"></script>
+
+</body>
+</html>
