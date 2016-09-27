@@ -8,8 +8,21 @@
 <body>
 
     <div id="app">
-        <h1>{{ message }}</h1>
-        <input v-model="message">
+        <form>
+            <span class="error" v-show="!message">
+                Must enter a message
+            </span>
+            <br>
+
+            <textarea v-model="message" cols="30" rows="10">
+
+            </textarea>
+            <br>
+
+            <button type="submit" v-if="message">
+                Send!
+            </button>
+        </form>
 
         <pre>
             {{ $data | json }}
