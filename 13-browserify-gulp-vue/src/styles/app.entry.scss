@@ -1,0 +1,12 @@
+div.alert {
+    text-align: center;
+    margin: 0 auto;
+}
+.success {
+    border: green;
+    color: green;
+}
+.error {
+    border: red;
+    color: lighten(red, 20%);
+}
