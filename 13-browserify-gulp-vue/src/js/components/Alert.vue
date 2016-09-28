@@ -9,6 +9,26 @@
     </div>
 </template>
 
+<style lang="sass">
+    .Alert {
+        border: 1px solid grey;
+        background-color: lighten(grey, 70%);
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .Alert__success {
+        border-color: green;
+        background-color: lighten(green, 70%);
+        color: lighten(green, 20%);
+    }
+
+    .Alert__error {
+        border-color: red;
+        background-color: lighten(red, 70%);
+        color: lighten(red, 20%);
+    }
+</style>
 
 <script>
 export default {
@@ -31,9 +51,9 @@ export default {
             var type = this.type;
 
             return {
-                'alert': true,
-                'success': type == 'success',
-                'error': type == 'error',
+                'Alert': true,
+                'Alert__success': type == 'success',
+                'Alert__error': type == 'error',
             }
         }
     }

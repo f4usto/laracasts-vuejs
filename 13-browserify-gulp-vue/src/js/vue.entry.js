@@ -1,6 +1,6 @@
 var Vue = require('vue');
 
-var Alert = require('./components/Alert.vue');
+import Alert  from './components/Alert.vue';
 
 new Vue({
     el: '#app',

@@ -7,6 +7,7 @@ var connect = require('gulp-connect');
 var sass = require("gulp-sass");
 var sourcemaps = require('gulp-sourcemaps');
 var gutil = require('gulp-util');
+var notify = require('gulp-notify');
 
 var glob = require('glob');
 var browserify = require('browserify');
@@ -24,7 +25,8 @@ gulp.task("sass", function () {
     .pipe(sass())
     .pipe(rename("styles.css"))
     .pipe(gulp.dest("dist"))
-    .pipe(connect.reload());
+    .pipe(connect.reload())
+    .pipe(notify("sass files updated!"));
 });
 
 
@@ -32,7 +34,7 @@ gulp.task('js:vue', function() {
     var files = glob.sync('./src/js/**/*.entry.js');
 
     browserify({
-        entries: './src/js/vue.entry.js',
+        entries: files,
         debug: true
     })
     .transform(vueify)
@@ -49,7 +51,8 @@ gulp.task('js:vue', function() {
         .on('error', gutil.log)
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('dist'))
-    .pipe(connect.reload());
+    .pipe(connect.reload())
+    .pipe(notify("js:vueJS task completed!"));
 });
 
 gulp.task('start-server', function() {
@@ -57,7 +60,7 @@ gulp.task('start-server', function() {
 });
 
 gulp.task('watch:js:vue', function() {
-    gulp.watch('src/js/**/*.js', ['js:vue']);
+    gulp.watch('src/js/**/*.+(js|vue)', ['js:vue']);
 });
 
 gulp.task('watch:sass', function() {
